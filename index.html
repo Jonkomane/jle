@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Added viewport meta -->
+  <title>Happy Birthday to Me!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+      background-color: #5D3A00; /* Dark brown background */
+      font-family: 'Roboto', sans-serif;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      position: relative;
+      width: 90vw; /* Responsive width */
+      max-width: 400px; /* Maximum width */
+      height: 90vh; /* Responsive height */
+      max-height: 600px; /* Maximum height */
+      background-color: #A0522D; /* Lighter brown frame */
+      border-radius: 30px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+      overflow: hidden;
+      padding: 20px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .header {
+      text-align: center;
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(1.5em, 5vw, 2.5em); /* Responsive font size */
+      color: #FFD700; /* Gold text */
+      text-shadow: 2px 2px #000;
+      margin-bottom: 10px;
+      width: 100%;
+    }
+
+    .photo {
+      position: relative;
+      width: 60vw; /* Responsive width */
+      height: 60vw; /* Responsive height (square) */
+      max-width: 220px; /* Maximum size */
+      max-height: 220px;
+      margin: 10px auto;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 6px solid #fff;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+      z-index: 2;
+      flex-shrink: 0;
+    }
+
+    .photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .star {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: radial-gradient(white, rgba(255, 255, 255, 0));
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: fall linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes fall {
+      from {
+        transform: translateY(-10px) scale(1);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(100vh) scale(0.5);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="star-container">
+    <div class="header">9 July 2025</div>
+    <div class="header">Happy 20th Birthday</div>
+    <div class="photo">
+      <img src="Jonk.jpg" alt="My Birthday Photo">
+    </div>
+  </div>
+
+  <script>
+    const container = document.getElementById('star-container');
+    function createStar() {
+      const star = document.createElement('div');
+      star.classList.add('star');
+      star.style.left = Math.random() * container.offsetWidth + 'px';
+      star.style.animationDuration = (2 + Math.random() * 4) + 's';
+      star.style.opacity = 0.6 + Math.random() * 0.4;
+      star.style.width = star.style.height = (3 + Math.random() * 4) + 'px';
+      container.appendChild(star);
+      setTimeout(() => {
+        star.remove();
+      }, 6000);
+    }
+
+    setInterval(createStar, 120);
+  </script>
+</body>
+</html>
